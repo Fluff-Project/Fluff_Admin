@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <title>Admin page: User</title>
+        <style>
+            input[type=text], select {
+                width: 70%;
+                padding: 12px 20px;
+                margin: 2px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                width: 70%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+            div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+
+        </style>
+        <!-- 제이쿼리 불러오기 -->
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body>
+        <h1>Welcome to the 윤자이 World!</h1>
+        <img src="./Modern-Times-Banner-696x365.jpg" width="50%" alt="factory">
+
+        <div>
+            <label for="email">email</label>
+            <input type="text" id="email" class="blank" />
+
+            <label for="pwd">pwd</label>
+            <input type="text" id="pwd" />
+
+            <label for="username">username</label>
+            <input type="text" id="username" />
+
+            <label for="gender">gender</label>
+            <input type="text" id="gender" />
+
+            <label for="address">address</label>
+            <input type="text" id="address" />
+
+            <label for="phone">phone</label>
+            <input type="text" id="phone" />
+        
+            <h3>style: 숫자 값을 넣어주세요!</h3>
+
+            <label for="simple">simple</label>
+            <input type="text" id="simple" />
+
+            <label for="street">street</label>
+            <input type="text" id="street" />
+
+            <label for="lovely">lovely</label>
+            <input type="text" id="lovely" />
+
+            <label for="modernchic">modernchic</label>
+            <input type="text" id="modernchic" />
+
+            <label for="unique">unique</label>
+            <input type="text" id="unique" />
+
+            <label for="formal">formal</label>
+            <input type="text" id="formal" />
+
+            <label for="ethnic">ethnic</label>
+            <input type="text" id="ethnic" />
+
+            <label for="sporty">sporty</label>
+            <input type="text" id="sporty" />
+
+            <label for="oldschool">oldschool</label>
+            <input type="text" id="oldschool" />
+
+            <label for="hiphop">hiphop</label>
+            <input type="text" id="hiphop" />
+
+            <label for="amekaji">amekaji</label>
+            <input type="text" id="amekaji" />
+
+            <input type="submit" id="OK"/>
+        </div>
+        
+        <script>
+            $("#OK").click(function(){      // OK 버튼 클릭하면
+                $.ajax({
+                    url: '/api/user',       // postTest 주소로
+                    async: true,            // 동기화 - 서버에서 반응이 올때까지 기다림
+                    type: 'POST',           // POST 방식으로
+                    data: {
+                        email: $("#email").val(),
+                        pwd: $("#pwd").val(),
+                        username: $("#username").val(),
+                        gender: $("#gender").val(),
+                        address: $("#address").val(),
+                        phone: $("#phone").val(),
+                        simple: $("#simple").val(),
+                        street: $("#street").val(),
+                        lovely: $("#lovely").val(),
+                        modernchic: $("#modernchic").val(),
+                        unique: $("#unique").val(),
+                        formal: $("#formal").val(),
+                        ethnic: $("#ethnic").val(),
+                        sporty: $("#sporty").val(),
+                        oldschool: $("#oldschool").val(),
+                        street: $("#street").val(),
+                    },
+                    dataType: 'json',
+                    success: function(data) {   // POST 요청 성공 시
+                        alert("보내기 성공");
+                    },
+                    error: function(err) {      // POST 요청 실패 시
+                        alert("보내기 실패 " + err);
+                    }
+                }); 
+            });
+        </script>
+    </body>
+</html>
+
+
+
+
+
