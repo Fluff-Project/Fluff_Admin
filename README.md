@@ -32,7 +32,8 @@ POST api/goods
     "style": ["pretty", "sporty"]
 }
 ```
-![image]()
+![image](./readmeImg/ex_upload_goods.png)
+
 \
 []()
 **Response**
