@@ -1,4 +1,4 @@
-# BASE URI: http://3.212.182.137:3000
+# BASE URI: http://3.212.182.137:3001
 
 <img src="./readmeImg/FluffMainLogo.png" width="40%"/>
 
