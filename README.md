@@ -2,13 +2,12 @@
 
 <img src="./readmeImg/FluffMainLogo.png" width="40%"/>
 
-This project is admin page what is upload dumy data. if you want using this api, you need read this reference.
+This project is admin page what is upload dumy data.\
+if you want using this api, you need read this reference.
 \
 \
 []()
 # Usage
-\
-[]()
 ## email 목록확인
 > applicaion/json
 ```http
