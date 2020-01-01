@@ -1,16 +1,32 @@
 const express = require('express');
 const router = express.Router();
-let { Goods } = require('../../models/');
+let { Goods, User } = require('../../models/');
 const { sc, au, rm } = require('../../modules/utils');
 const upload = require('../../config/multer');
 
 /* GET home page. */
 router.post('/goods', upload.array('images', 10), async (req, res, next) => {
+  
   try {
-    const { goodsName, comment, coloe, category, gender, size, price, grade, condition, style } = req.body;
-    const obj = { goodsName, comment, coloe, category, gender, size, price, grade, condition, style, img: req.files };
+    const { email } = req.body;
+    const { goodsName, comment, color, category, gender, size, price, grade, condition, style } = req.body;
     
-    console.log(`obj: ${obj}`);
+    let files = req.files;
+    let imageArr = files.map(it => it.location);
+
+    // find user
+    const user = await User.findOne().where('email').equals(email).select('_id, username')
+
+    // make obj
+    const obj = {
+      goodsName, comment, color, category, gender, size, price, grade, condition, style,
+      img: imageArr,
+      sellerName: user.username,
+      sellerId: user._id
+    };
+
+    console.log(obj);
+    
 
     let goods = new Goods(obj);
     const result = await goods.save();
@@ -21,6 +37,11 @@ router.post('/goods', upload.array('images', 10), async (req, res, next) => {
         json: au.successTrue(`Database 저장에 실패했습니다.`, result)
       });
     }
+
+    // sellerAuth: true, saleList
+    user.sellerAuth = true
+    user.saleList.push({_id: result._id});
+    user.save();
 
     console.log(result);
     res.status(sc.OK).json({
@@ -34,7 +55,6 @@ router.post('/goods', upload.array('images', 10), async (req, res, next) => {
       code: sc.INTERNAL_SERVER_ERROR,
       json: au.successFalse(`서버 내부오류 발생`)
     });
-    console.log(result);
   }
 });
 

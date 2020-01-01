@@ -7,13 +7,10 @@ const goodsSchema = new Schema({
   goodsName: { type: String, required: true, unique: true },
 
   // 판매자 username
-  sellerName: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-
+  sellerName: { type: String },
+  
   // sellerId
-  sellerId: {
-    id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    name: String,
-  },
+  sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 
   // 판매자 한줄 평
   comment: { type: String, required: false, unique: false, default: null },
@@ -28,7 +25,7 @@ const goodsSchema = new Schema({
 
   // 상품 이미지 리스트
   img: { type: [String], required: false, unique: false },
-
+  
   // 가격
   price: { type: Number, required: true, default: 0},
 
@@ -51,3 +48,5 @@ const goodsSchema = new Schema({
 });
 
 module.exports = mongoose.model('Goods', goodsSchema);
+
+
