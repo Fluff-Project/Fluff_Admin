@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
-const size = require('./size');
 
 const goodsSchema = new Schema({
   // 상품 명
@@ -25,7 +24,7 @@ const goodsSchema = new Schema({
 
   // 상품 이미지 리스트
   img: { type: [String], required: false, unique: false },
-  
+
   // 가격
   price: { type: Number, required: true, default: 0},
 
@@ -33,7 +32,7 @@ const goodsSchema = new Schema({
   grade: { type: Number, required: false, unique: false, default: 0},
 
   // 사이즈
-  size: size,
+  size: { type: String, required: false },
 
   condition: { type: Number, required: true, unique: false },
 
