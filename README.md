@@ -1,5 +1,8 @@
 # BASE URI: http://3.212.182.137:3000
-This is admin page for upload dumy data.\
+
+<img src="./readmeImg/FluffMainLogo.png" width="40%"/>
+
+This project is admin page what is upload dumy data.\
 if you want using this api, you need read this reference.
 \
 \
