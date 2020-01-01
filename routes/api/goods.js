@@ -3,26 +3,27 @@ const router = express.Router();
 let { Goods, User } = require('../../models/');
 const { sc, au, rm } = require('../../modules/utils');
 const upload = require('../../config/multer');
+const mongoose = require('mongoose');
 
 /* GET home page. */
 router.post('/goods', upload.array('images', 10), async (req, res, next) => {
   
   try {
     const { email } = req.body;
-    const { goodsName, comment, color, category, gender, size, price, grade, condition, style } = req.body;
+    const { goodsName, comment, color, category, gender, size, price, condition, style } = req.body;
     
     let files = req.files;
     let imageArr = files.map(it => it.location);
 
     // find user
-    const user = await User.findOne().where('email').equals(email).select('_id, username')
+    const user = await User.findOne().where('email').equals(email);
 
     // make obj
     const obj = {
-      goodsName, comment, color, category, gender, size, price, grade, condition, style,
+      goodsName, comment, color, category, gender, size, price, condition, style,
       img: imageArr,
       sellerName: user.username,
-      sellerId: user._id
+      sellerId: mongoose.Types.ObjectId(user._id)
     };
 
     console.log(obj);
@@ -40,10 +41,16 @@ router.post('/goods', upload.array('images', 10), async (req, res, next) => {
 
     // sellerAuth: true, saleList
     user.sellerAuth = true
-    user.saleList.push({_id: result._id});
-    user.save();
+    user.saleList.push({ _id: result._id });
+    // user.save();
 
+    console.log(`@@This is user data@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`);
+    console.log(user);
+
+    console.log(`@@This is goods data@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`);
     console.log(result);
+
+    
     res.status(sc.OK).json({
       code: sc.OK,
       json: au.successTrue(`Goods를 Database에 저장했습니다.`, result)
