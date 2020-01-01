@@ -3,7 +3,8 @@ const router = express.Router();
 let { Goods, User } = require('../../models/');
 const { sc, au, rm } = require('../../modules/utils');
 const upload = require('../../config/multer');
-const mongoose = require('mongoose');
+
+const ObjectID = require('mongodb').ObjectID;
 
 /* GET home page. */
 router.post('/goods', upload.array('images', 10), async (req, res, next) => {
@@ -23,11 +24,10 @@ router.post('/goods', upload.array('images', 10), async (req, res, next) => {
       goodsName, comment, color, category, gender, size, price, condition, style,
       img: imageArr,
       sellerName: user.username,
-      sellerId: mongoose.Types.ObjectId(user._id)
+      sellerId: { _id: ObjectID(user._id)}
     };
 
     console.log(obj);
-    
 
     let goods = new Goods(obj);
     const result = await goods.save();
@@ -42,10 +42,10 @@ router.post('/goods', upload.array('images', 10), async (req, res, next) => {
     // sellerAuth: true, saleList
     user.sellerAuth = true
     user.saleList.push({ _id: result._id });
-    // user.save();
+    const resultUser = await user.save();
 
     console.log(`@@This is user data@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`);
-    console.log(user);
+    console.log(resultUser);
 
     console.log(`@@This is goods data@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`);
     console.log(result);
