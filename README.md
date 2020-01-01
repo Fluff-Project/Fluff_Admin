@@ -88,7 +88,7 @@ POST api/goods
 \
 \
 []()
-## 상품 등록
+## email 목록확인
 > applicaion/json
 ```http
 GET api/userList
