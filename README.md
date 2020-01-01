@@ -28,7 +28,8 @@ POST api/goods
     "price": 20000,
     "grade": 10,
     "condition": 10,
-    "style": ["pretty", "sporty"]
+    "style": ["pretty", "sporty"],
+    "email": "판매자의 이름"
 }
 ```
 \
@@ -77,6 +78,73 @@ POST api/goods
     "json": {
         "success": false,
         "message": "서버 내부오류 발생",
+    }
+}
+```
+\
+[]()
+
+---
+\
+\
+[]()
+# Usage
+## 상품 등록
+> applicaion/json
+```http
+GET api/userList
+```
+\
+[]()
+**Request**
+> body
+```json
+{
+    "goodName": "상품 이름",
+    "comment": "상품 한줄 평",
+    "color": ["red, blue"],
+    "category": "outer",
+    "gender": "m",
+    "size": "xxlg",
+    "price": 20000,
+    "grade": 10,
+    "condition": 10,
+    "style": ["pretty", "sporty"],
+    "email": "판매자의 이름"
+}
+```
+\
+[]()
+**Response**
+> Success
+```json
+{
+    "code": 200,
+    "json": {
+        "success": true,
+        "message": "userList 조회 성공",
+        "data": [
+            {
+                "_id": "5e0a3d33217f2200119b6036",
+                "email": "21ewfefewfew"
+            },
+            {
+                "_id": "5e0a416f217f2200119b6037",
+                "email": "plan@sopt.org"
+            },
+            {
+                "_id": "5e0a4352217f2200119b603c",
+                "email": "98_02@naver.com"
+            },
+            {
+                "_id": "5e0a4459217f2200119b6041",
+                "email": "soar_dy@naver.com"
+            },
+            {
+                "_id": "5e0a4763217f2200119b6042",
+                "email": "girlcrush@naver.com"
+            }
+        ]
     }
 }
 ```
