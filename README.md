@@ -20,6 +20,7 @@ POST api/goods
 ```json
 {
     "goodName": "상품 이름",
+    "email": "이메일",
     "comment": "상품 한줄 평",
     "color": ["red, blue"],
     "category": "outer",
@@ -31,6 +32,7 @@ POST api/goods
     "style": ["pretty", "sporty"]
 }
 ```
+![image]()
 \
 []()
 **Response**
